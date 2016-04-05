@@ -1,0 +1,16 @@
+/*
+ * Lazy Load - jQuery plugin for lazy loading images
+ *
+ * Copyright (c) 2007-2012 Mika Tuupola
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ * Project home:
+ *   http://www.appelsiini.net/projects/lazyload
+ *
+ * Version:  1.7.2
+ *
+ */
+
+!function(e,t){$window=e(t),e.fn.lazyload=function(o){function n(){var t=0;i.each(function(){var o=e(this);if(!r.skip_invisible||o.is(":visible"))if(e.abovethetop(this,r)||e.leftofbegin(this,r));else if(e.belowthefold(this,r)||e.rightoffold(this,r)){if(++t>r.failure_limit)return!1}else o.trigger("appear")})}var i=this,r={threshold:0,failure_limit:0,event:"scroll",effect:"show",container:t,data_attribute:"original",skip_invisible:!0,appear:null,load:null};return o&&(void 0!==o.failurelimit&&(o.failure_limit=o.failurelimit,delete o.failurelimit),void 0!==o.effectspeed&&(o.effect_speed=o.effectspeed,delete o.effectspeed),e.extend(r,o)),$container=void 0===r.container||r.container===t?$window:e(r.container),0===r.event.indexOf("scroll")&&$container.bind(r.event,function(e){return n()}),this.each(function(){var t=this,o=e(t);t.loaded=!1,o.one("appear",function(){if(!this.loaded){if(r.appear){var n=i.length;r.appear.call(t,n,r)}e("<img />").bind("load",function(){o.hide().attr("src",o.data(r.data_attribute))[r.effect](r.effect_speed),t.loaded=!0;var n=e.grep(i,function(e){return!e.loaded});if(i=e(n),r.load){var f=i.length;r.load.call(t,f,r)}}).attr("src",o.data(r.data_attribute))}}),0!==r.event.indexOf("scroll")&&o.bind(r.event,function(e){t.loaded||o.trigger("appear")})}),$window.bind("resize",function(e){n()}),n(),this},e.belowthefold=function(o,n){var i;return i=void 0===n.container||n.container===t?$window.height()+$window.scrollTop():$container.offset().top+$container.height(),i<=e(o).offset().top-n.threshold},e.rightoffold=function(o,n){var i;return i=void 0===n.container||n.container===t?$window.width()+$window.scrollLeft():$container.offset().left+$container.width(),i<=e(o).offset().left-n.threshold},e.abovethetop=function(o,n){var i;return i=void 0===n.container||n.container===t?$window.scrollTop():$container.offset().top,i>=e(o).offset().top+n.threshold+e(o).height()},e.leftofbegin=function(o,n){var i;return i=void 0===n.container||n.container===t?$window.scrollLeft():$container.offset().left,i>=e(o).offset().left+n.threshold+e(o).width()},e.inviewport=function(t,o){return!(e.rightofscreen(t,o)||e.leftofscreen(t,o)||e.belowthefold(t,o)||e.abovethetop(t,o))},e.extend(e.expr[":"],{"below-the-fold":function(o){return e.belowthefold(o,{threshold:0,container:t})},"above-the-top":function(o){return!e.belowthefold(o,{threshold:0,container:t})},"right-of-screen":function(o){return e.rightoffold(o,{threshold:0,container:t})},"left-of-screen":function(o){return!e.rightoffold(o,{threshold:0,container:t})},"in-viewport":function(o){return!e.inviewport(o,{threshold:0,container:t})},"above-the-fold":function(o){return!e.belowthefold(o,{threshold:0,container:t})},"right-of-fold":function(o){return e.rightoffold(o,{threshold:0,container:t})},"left-of-fold":function(o){return!e.rightoffold(o,{threshold:0,container:t})}})}(jQuery,window);
