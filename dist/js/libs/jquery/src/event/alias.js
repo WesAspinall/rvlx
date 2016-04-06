@@ -1,1 +1,27 @@
-define(["../core","../event","./trigger"],function(e){e.each("blur focus focusin focusout load resize scroll unload click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup error contextmenu".split(" "),function(o,n){e.fn[n]=function(e,o){return arguments.length>0?this.on(n,null,e,o):this.trigger(n)}}),e.fn.extend({hover:function(e,o){return this.mouseenter(e).mouseleave(o||e)}})});
+define( [
+	"../core",
+
+	"../event",
+	"./trigger"
+], function( jQuery ) {
+
+jQuery.each( ( "blur focus focusin focusout load resize scroll unload click dblclick " +
+	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+	"change select submit keydown keypress keyup error contextmenu" ).split( " " ),
+	function( i, name ) {
+
+	// Handle event binding
+	jQuery.fn[ name ] = function( data, fn ) {
+		return arguments.length > 0 ?
+			this.on( name, null, data, fn ) :
+			this.trigger( name );
+	};
+} );
+
+jQuery.fn.extend( {
+	hover: function( fnOver, fnOut ) {
+		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
+	}
+} );
+
+} );

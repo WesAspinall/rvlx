@@ -1,1 +1,23 @@
-define(["../var/document","../var/support"],function(e,t){return function(){var n=e.createElement("div");t.deleteExpando=!0;try{delete n.test}catch(d){t.deleteExpando=!1}n=null}(),t});
+define( [
+	"../var/document",
+	"../var/support"
+], function( document, support ) {
+
+( function() {
+	var div = document.createElement( "div" );
+
+	// Support: IE<9
+	support.deleteExpando = true;
+	try {
+		delete div.test;
+	} catch ( e ) {
+		support.deleteExpando = false;
+	}
+
+	// Null elements to avoid leaks in IE.
+	div = null;
+} )();
+
+return support;
+
+} );

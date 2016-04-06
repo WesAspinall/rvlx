@@ -1,1 +1,14 @@
-define(["./core","../external/sizzle/dist/sizzle"],function(e,i){e.find=i,e.expr=i.selectors,e.expr[":"]=e.expr.pseudos,e.uniqueSort=e.unique=i.uniqueSort,e.text=i.getText,e.isXMLDoc=i.isXML,e.contains=i.contains});
+define( [
+	"./core",
+	"../external/sizzle/dist/sizzle"
+], function( jQuery, Sizzle ) {
+
+jQuery.find = Sizzle;
+jQuery.expr = Sizzle.selectors;
+jQuery.expr[ ":" ] = jQuery.expr.pseudos;
+jQuery.uniqueSort = jQuery.unique = Sizzle.uniqueSort;
+jQuery.text = Sizzle.getText;
+jQuery.isXMLDoc = Sizzle.isXML;
+jQuery.contains = Sizzle.contains;
+
+} );

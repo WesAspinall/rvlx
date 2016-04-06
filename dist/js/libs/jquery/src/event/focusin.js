@@ -1,1 +1,53 @@
-define(["../core","../data/var/dataPriv","./support","../event","./trigger"],function(e,t,n){return n.focusin||e.each({focus:"focusin",blur:"focusout"},function(n,c){var s=function(t){e.event.simulate(c,t.target,e.event.fix(t))};e.event.special[c]={setup:function(){var e=this.ownerDocument||this,r=t.access(e,c);r||e.addEventListener(n,s,!0),t.access(e,c,(r||0)+1)},teardown:function(){var e=this.ownerDocument||this,r=t.access(e,c)-1;r?t.access(e,c,r):(e.removeEventListener(n,s,!0),t.remove(e,c))}}}),e});
+define( [
+	"../core",
+	"../data/var/dataPriv",
+	"./support",
+
+	"../event",
+	"./trigger"
+], function( jQuery, dataPriv, support ) {
+
+// Support: Firefox
+// Firefox doesn't have focus(in | out) events
+// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
+//
+// Support: Chrome, Safari
+// focus(in | out) events fire after focus & blur events,
+// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
+// Related ticket - https://code.google.com/p/chromium/issues/detail?id=449857
+if ( !support.focusin ) {
+	jQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
+
+		// Attach a single capturing handler on the document while someone wants focusin/focusout
+		var handler = function( event ) {
+			jQuery.event.simulate( fix, event.target, jQuery.event.fix( event ) );
+		};
+
+		jQuery.event.special[ fix ] = {
+			setup: function() {
+				var doc = this.ownerDocument || this,
+					attaches = dataPriv.access( doc, fix );
+
+				if ( !attaches ) {
+					doc.addEventListener( orig, handler, true );
+				}
+				dataPriv.access( doc, fix, ( attaches || 0 ) + 1 );
+			},
+			teardown: function() {
+				var doc = this.ownerDocument || this,
+					attaches = dataPriv.access( doc, fix ) - 1;
+
+				if ( !attaches ) {
+					doc.removeEventListener( orig, handler, true );
+					dataPriv.remove( doc, fix );
+
+				} else {
+					dataPriv.access( doc, fix, attaches );
+				}
+			}
+		};
+	} );
+}
+
+return jQuery;
+} );

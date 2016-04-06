@@ -1,1 +1,22 @@
-define(["backbone","handlebars"],function(e,n){var i=e.View.extend({initialize:function(){this.render()},render:function(){console.log("hello from home render function")}});return i});
+define([
+  'backbone',
+  'handlebars',
+  'hbs!app/views/templates/precomp'
+], function(Backbone, Handlebars, Template){
+
+    var HomeView = Backbone.View.extend({
+        
+        initialize: function(){
+
+          this.render();
+        },
+
+        render: function() {
+
+          document.body.innerHTML = Template({adjective: "favorite"});
+
+        }
+    })
+
+    return HomeView;
+});

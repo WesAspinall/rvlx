@@ -1,1 +1,20 @@
-define(["../../core"],function(e){return function(n,r,i){for(var o=[],f=void 0!==i;(n=n[r])&&9!==n.nodeType;)if(1===n.nodeType){if(f&&e(n).is(i))break;o.push(n)}return o}});
+define( [
+	"../../core"
+], function( jQuery ) {
+
+return function( elem, dir, until ) {
+	var matched = [],
+		truncate = until !== undefined;
+
+	while ( ( elem = elem[ dir ] ) && elem.nodeType !== 9 ) {
+		if ( elem.nodeType === 1 ) {
+			if ( truncate && jQuery( elem ).is( until ) ) {
+				break;
+			}
+			matched.push( elem );
+		}
+	}
+	return matched;
+};
+
+} );

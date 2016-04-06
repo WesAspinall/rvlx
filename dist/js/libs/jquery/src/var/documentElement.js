@@ -1,1 +1,5 @@
-define(["./document"],function(e){return e.documentElement});
+define( [
+	"./document"
+], function( document ) {
+	return document.documentElement;
+} );

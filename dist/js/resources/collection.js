@@ -1,1 +1,23 @@
-define(["backbone","resources/cruiseLineModel"],function(e,n){var r=e.Collection.extend({url:"https://api.myjson.com/bins/2gr36",model:n,parse:function(e){return e}});return r});
+define(['backbone','resources/cruiseLineModel'],function(Backbone, CruiseLineModel){
+
+	var Collection = Backbone.Collection.extend({
+
+
+		url: 'https://api.myjson.com/bins/2gr36',
+
+		model: CruiseLineModel,
+
+
+		parse: function(data) {
+
+    			return data;
+  			}
+		
+	});
+
+
+	return Collection;
+
+
+
+})

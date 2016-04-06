@@ -1,1 +1,211 @@
-define(["./core","./var/document","./var/documentElement","./var/hasOwn","./var/indexOf"],function(e,n,t,o,r){function c(t,o){if(t===o)return i=!0,0;var c=!t.compareDocumentPosition-!o.compareDocumentPosition;return c?c:(c=(t.ownerDocument||t)===(o.ownerDocument||o)?t.compareDocumentPosition(o):1,1&c?t===n||t.ownerDocument===n&&e.contains(n,t)?-1:o===n||o.ownerDocument===n&&e.contains(n,o)?1:u?r.call(u,t)-r.call(u,o):0:4&c?-1:1)}function a(e){var n,t=[],o=0,r=0;if(i=!1,u=!l&&e.slice(0),e.sort(c),i){for(;n=e[r++];)n===e[r]&&(o=t.push(r));for(;o--;)e.splice(t[o],1)}return u=null,e}var i,u,l=e.expando.split("").sort(c).join("")===e.expando,s=t.matches||t.webkitMatchesSelector||t.mozMatchesSelector||t.oMatchesSelector||t.msMatchesSelector;e.extend({find:function(t,o,r,c){var a,i,u=0;if(r=r||[],o=o||n,!t||"string"!=typeof t)return r;if(1!==(i=o.nodeType)&&9!==i)return[];if(c)for(;a=c[u++];)e.find.matchesSelector(a,t)&&r.push(a);else e.merge(r,o.querySelectorAll(t));return r},uniqueSort:a,unique:a,text:function(n){var t,o="",r=0,c=n.nodeType;if(c){if(1===c||9===c||11===c)return n.textContent;if(3===c||4===c)return n.nodeValue}else for(;t=n[r++];)o+=e.text(t);return o},contains:function(e,n){var t=9===e.nodeType?e.documentElement:e,o=n&&n.parentNode;return e===o||!(!o||1!==o.nodeType||!t.contains(o))},isXMLDoc:function(e){var n=e&&(e.ownerDocument||e).documentElement;return n?"HTML"!==n.nodeName:!1},expr:{attrHandle:{},match:{bool:new RegExp("^(?:checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped)$","i"),needsContext:/^[\x20\t\r\n\f]*[>+~]/}}}),e.extend(e.find,{matches:function(n,t){return e.find(n,null,null,t)},matchesSelector:function(e,n){return s.call(e,n)},attr:function(n,t){var r=e.expr.attrHandle[t.toLowerCase()],c=r&&o.call(e.expr.attrHandle,t.toLowerCase())?r(n,t,e.isXMLDoc(n)):void 0;return void 0!==c?c:n.getAttribute(t)}})});
+define( [
+	"./core",
+	"./var/document",
+	"./var/documentElement",
+	"./var/hasOwn",
+	"./var/indexOf"
+], function( jQuery, document, documentElement, hasOwn, indexOf ) {
+
+/*
+ * Optional (non-Sizzle) selector module for custom builds.
+ *
+ * Note that this DOES NOT SUPPORT many documented jQuery
+ * features in exchange for its smaller size:
+ *
+ * Attribute not equal selector
+ * Positional selectors (:first; :eq(n); :odd; etc.)
+ * Type selectors (:input; :checkbox; :button; etc.)
+ * State-based selectors (:animated; :visible; :hidden; etc.)
+ * :has(selector)
+ * :not(complex selector)
+ * custom selectors via Sizzle extensions
+ * Leading combinators (e.g., $collection.find("> *"))
+ * Reliable functionality on XML fragments
+ * Requiring all parts of a selector to match elements under context
+ *   (e.g., $div.find("div > *") now matches children of $div)
+ * Matching against non-elements
+ * Reliable sorting of disconnected nodes
+ * querySelectorAll bug fixes (e.g., unreliable :focus on WebKit)
+ *
+ * If any of these are unacceptable tradeoffs, either use Sizzle or
+ * customize this stub for the project's specific needs.
+ */
+
+var hasDuplicate, sortInput,
+	sortStable = jQuery.expando.split( "" ).sort( sortOrder ).join( "" ) === jQuery.expando,
+	matches = documentElement.matches ||
+		documentElement.webkitMatchesSelector ||
+		documentElement.mozMatchesSelector ||
+		documentElement.oMatchesSelector ||
+		documentElement.msMatchesSelector;
+
+function sortOrder( a, b ) {
+
+	// Flag for duplicate removal
+	if ( a === b ) {
+		hasDuplicate = true;
+		return 0;
+	}
+
+	// Sort on method existence if only one input has compareDocumentPosition
+	var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
+	if ( compare ) {
+		return compare;
+	}
+
+	// Calculate position if both inputs belong to the same document
+	compare = ( a.ownerDocument || a ) === ( b.ownerDocument || b ) ?
+		a.compareDocumentPosition( b ) :
+
+		// Otherwise we know they are disconnected
+		1;
+
+	// Disconnected nodes
+	if ( compare & 1 ) {
+
+		// Choose the first element that is related to our preferred document
+		if ( a === document || a.ownerDocument === document &&
+			jQuery.contains( document, a ) ) {
+			return -1;
+		}
+		if ( b === document || b.ownerDocument === document &&
+			jQuery.contains( document, b ) ) {
+			return 1;
+		}
+
+		// Maintain original order
+		return sortInput ?
+			( indexOf.call( sortInput, a ) - indexOf.call( sortInput, b ) ) :
+			0;
+	}
+
+	return compare & 4 ? -1 : 1;
+}
+
+function uniqueSort( results ) {
+	var elem,
+		duplicates = [],
+		j = 0,
+		i = 0;
+
+	hasDuplicate = false;
+	sortInput = !sortStable && results.slice( 0 );
+	results.sort( sortOrder );
+
+	if ( hasDuplicate ) {
+		while ( ( elem = results[ i++ ] ) ) {
+			if ( elem === results[ i ] ) {
+				j = duplicates.push( i );
+			}
+		}
+		while ( j-- ) {
+			results.splice( duplicates[ j ], 1 );
+		}
+	}
+
+	// Clear input after sorting to release objects
+	// See https://github.com/jquery/sizzle/pull/225
+	sortInput = null;
+
+	return results;
+}
+
+jQuery.extend( {
+	find: function( selector, context, results, seed ) {
+		var elem, nodeType,
+			i = 0;
+
+		results = results || [];
+		context = context || document;
+
+		// Same basic safeguard as Sizzle
+		if ( !selector || typeof selector !== "string" ) {
+			return results;
+		}
+
+		// Early return if context is not an element or document
+		if ( ( nodeType = context.nodeType ) !== 1 && nodeType !== 9 ) {
+			return [];
+		}
+
+		if ( seed ) {
+			while ( ( elem = seed[ i++ ] ) ) {
+				if ( jQuery.find.matchesSelector( elem, selector ) ) {
+					results.push( elem );
+				}
+			}
+		} else {
+			jQuery.merge( results, context.querySelectorAll( selector ) );
+		}
+
+		return results;
+	},
+	uniqueSort: uniqueSort,
+	unique: uniqueSort,
+	text: function( elem ) {
+		var node,
+			ret = "",
+			i = 0,
+			nodeType = elem.nodeType;
+
+		if ( !nodeType ) {
+
+			// If no nodeType, this is expected to be an array
+			while ( ( node = elem[ i++ ] ) ) {
+
+				// Do not traverse comment nodes
+				ret += jQuery.text( node );
+			}
+		} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+
+			// Use textContent for elements
+			return elem.textContent;
+		} else if ( nodeType === 3 || nodeType === 4 ) {
+			return elem.nodeValue;
+		}
+
+		// Do not include comment or processing instruction nodes
+
+		return ret;
+	},
+	contains: function( a, b ) {
+		var adown = a.nodeType === 9 ? a.documentElement : a,
+			bup = b && b.parentNode;
+		return a === bup || !!( bup && bup.nodeType === 1 && adown.contains( bup ) );
+	},
+	isXMLDoc: function( elem ) {
+
+		// documentElement is verified for cases where it doesn't yet exist
+		// (such as loading iframes in IE - #4833)
+		var documentElement = elem && ( elem.ownerDocument || elem ).documentElement;
+		return documentElement ? documentElement.nodeName !== "HTML" : false;
+	},
+	expr: {
+		attrHandle: {},
+		match: {
+			bool: new RegExp( "^(?:checked|selected|async|autofocus|autoplay|controls|defer" +
+				"|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped)$", "i" ),
+			needsContext: /^[\x20\t\r\n\f]*[>+~]/
+		}
+	}
+} );
+
+jQuery.extend( jQuery.find, {
+	matches: function( expr, elements ) {
+		return jQuery.find( expr, null, null, elements );
+	},
+	matchesSelector: function( elem, expr ) {
+		return matches.call( elem, expr );
+	},
+	attr: function( elem, name ) {
+		var fn = jQuery.expr.attrHandle[ name.toLowerCase() ],
+
+			// Don't get fooled by Object.prototype properties (jQuery #13807)
+			value = fn && hasOwn.call( jQuery.expr.attrHandle, name.toLowerCase() ) ?
+				fn( elem, name, jQuery.isXMLDoc( elem ) ) :
+				undefined;
+		return value !== undefined ? value : elem.getAttribute( name );
+	}
+} );
+
+} );

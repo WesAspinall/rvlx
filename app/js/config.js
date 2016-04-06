@@ -6,6 +6,7 @@ require.config({
 		"underscore": "libs/underscore-amd/underscore",
 		"backbone": "libs/backbone-amd/backbone",
 		"handlebars": "libs/handlebars/handlebars.runtime.amd",
+		"hbs": "libs/require-handlebars-plugin/hbs"
 	},
 
 });
@@ -14,17 +15,12 @@ require.config({
 require(['views/homeView','resources/cruiseLineModel', 'resources/collection'], function(HomeView, CruiseLineModel, Collection){
     
 
-
 	var cruiseLineModel = new CruiseLineModel();
 	var homeView     	= new HomeView();
 	var collection 	 	= new Collection();
 
 
-
-		var data = collection.fetch().then(function(){
-				console.log(collection.toJSON());
-
-			})
+	
 
 	console.log( "sup from config.js");
 

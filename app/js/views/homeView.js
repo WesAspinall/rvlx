@@ -1,7 +1,10 @@
 define([
   'backbone',
+  'jquery',
   'handlebars',
-], function(Backbone, Handlebars){
+  'resources/collection',
+  'hbs!views/templates/precomp'
+], function(Backbone, $, Handlebars,Collection, Template){
 
     var HomeView = Backbone.View.extend({
         
@@ -11,9 +14,18 @@ define([
         },
 
         render: function() {
-            console.log('hello from home render function');
+          
+          var collection = new Collection();
+
+          collection.fetch().then(function(){
+            var data = collection.toJSON();
+            document.body.innerHTML=Template(data[0]);
+          });
+        
+      
+
         }
-    });
+    })
 
     return HomeView;
 });
