@@ -1,3 +1,6 @@
-require(['app'], function(App){
+require(['config'], function(Config){
+
+
+	
 
 });	

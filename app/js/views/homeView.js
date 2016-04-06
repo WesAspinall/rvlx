@@ -1,18 +1,19 @@
-define(['backbone', 'jquery', 'handlebars', 'resources/collection'], function(Backbone, $, Handlebars, Collection){
+define([
+  'backbone',
+  'handlebars',
+], function(Backbone, Handlebars){
 
-	var HomeView = Backbone.View.extend({
+    var HomeView = Backbone.View.extend({
+        
+        initialize: function(){
 
-		initialize: function(){
+          this.render();
+        },
 
-			this.render();
-			console.log('HomeView rendered!');
-		},
-		
-		render: function(){
-			console.log("HomeView is rendering...")
-		}
+        render: function() {
+            console.log('hello from home render function');
+        }
+    });
 
-	});
-
-		return HomeView;
+    return HomeView;
 });

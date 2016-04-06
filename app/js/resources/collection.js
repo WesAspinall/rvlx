@@ -1,18 +1,20 @@
-define(['backbone','resources/model'],function(Backbone, Model){
+define(['backbone','resources/cruiseLineModel'],function(Backbone, CruiseLineModel){
 
 	var Collection = Backbone.Collection.extend({
 
+
 		url: 'https://api.myjson.com/bins/2gr36',
 
-		model: Model,
+		model: CruiseLineModel,
 
 
 		parse: function(data) {
-				console.log(data);
+
     			return data;
   			}
 		
 	});
+
 
 	return Collection;
 

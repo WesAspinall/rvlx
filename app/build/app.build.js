@@ -2,7 +2,7 @@
 	appDir: "../",
 	baseUrl: "js",
 	dir: "../../dist",
-	mainConfigFile: "../js/main.js",
+	mainConfigFile: "../js/config.js",
 	name: "main",
 	optimizeCss: "standard"
 })

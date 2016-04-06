@@ -1,0 +1,1 @@
+define(["backbone","resources/cruiseLineModel"],function(e,n){var r=e.Collection.extend({url:"https://api.myjson.com/bins/2gr36",model:n,parse:function(e){return e}});return r});

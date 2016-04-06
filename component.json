@@ -7,5 +7,6 @@
     "underscore-amd": null,
     "requirejs": null,
     "handlebars": "^4.0.5"
+    
   }
 }

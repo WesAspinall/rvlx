@@ -1,1 +1,1 @@
-define(["backbone"],function(n){var e=n.View.extend({initialize:function(){console.log("Ninja")}});return e});
+define(["backbone","handlebars"],function(e,n){var i=e.View.extend({initialize:function(){this.render()},render:function(){console.log("hello from home render function")}});return i});
