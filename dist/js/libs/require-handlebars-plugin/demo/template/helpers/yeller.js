@@ -1,9 +1,1 @@
-define(["hbs/handlebars"], function ( Handlebars ){
-  function yeller ( context, options ) {
-    // Assume it's a string for simplicity.
-    return context + "!!!!!!oneone!!one1";
-  }
-
-  Handlebars.registerHelper( 'yeller', yeller );
-  return yeller;
-});
+define(["hbs/handlebars"],function(e){function n(e,n){return e+"!!!!!!oneone!!one1"}return e.registerHelper("yeller",n),n});

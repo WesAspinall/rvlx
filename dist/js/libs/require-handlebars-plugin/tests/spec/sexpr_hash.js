@@ -1,16 +1,1 @@
-define(['hbs!'+require.toUrl('tests/templates/sexpr_hash')], function(template) {
-
-  describe("Subexpression handled in helpers", function() {
-
-    it("can render subexpressions in helpers", function() {
-      expect(typeof template).to.equal('function');
-      var html = template({hello: 'world'});
-      var container = document.createElement('div');
-      container.innerHTML=html;
-      var text = container.innerText.trim();
-      expect(text).to.equal('Testing sexpr in helper hash Foo (Bar) Baz');
-    });
-
-  });
-
-});
+define(["hbs!"+require.toUrl("tests/templates/sexpr_hash")],function(e){describe("Subexpression handled in helpers",function(){it("can render subexpressions in helpers",function(){expect(typeof e).to.equal("function");var n=e({hello:"world"}),r=document.createElement("div");r.innerHTML=n;var t=r.innerText.trim();expect(t).to.equal("Testing sexpr in helper hash Foo (Bar) Baz")})})});

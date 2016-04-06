@@ -1,8 +1,1 @@
-define(["hbs/handlebars"], function(Handlebars) {
-  function myhelper(options) {
-    return options.fn();
-  }
-
-  Handlebars.registerHelper("myhelper", myhelper);
-  return myhelper;
-});
+define(["hbs/handlebars"],function(e){function n(e){return e.fn()}return e.registerHelper("myhelper",n),n});

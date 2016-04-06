@@ -1,12 +1,1 @@
-(function() {
-
-  module("Backbone.noConflict");
-
-  test('noConflict', 2, function() {
-    var noconflictBackbone = Backbone.noConflict();
-    equal(window.Backbone, undefined, 'Returned window.Backbone');
-    window.Backbone = noconflictBackbone;
-    equal(window.Backbone, noconflictBackbone, 'Backbone is still pointing to the original Backbone');
-  });
-
-})();
+!function(){module("Backbone.noConflict"),test("noConflict",2,function(){var n=Backbone.noConflict();equal(window.Backbone,void 0,"Returned window.Backbone"),window.Backbone=n,equal(window.Backbone,n,"Backbone is still pointing to the original Backbone")})}();

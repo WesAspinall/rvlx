@@ -1,14 +1,1 @@
-define( [
-	"../var/document"
-], function( document ) {
-	function DOMEval( code, doc ) {
-		doc = doc || document;
-
-		var script = doc.createElement( "script" );
-
-		script.text = code;
-		doc.head.appendChild( script ).parentNode.removeChild( script );
-	}
-
-	return DOMEval;
-} );
+define(["../var/document"],function(e){function n(n,t){t=t||e;var r=t.createElement("script");r.text=n,t.head.appendChild(r).parentNode.removeChild(r)}return n});

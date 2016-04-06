@@ -1,17 +1,1 @@
-define([
-    'hbs/handlebars'
-], function(Handlebars) {
-
-    'use strict';
-
-    function innerHelper(key) {
-        if (typeof key !== 'undefined') {
-            return '(' + key + ')';
-        }
-        return '(missing)';
-    }
-
-    Handlebars.registerHelper('inner-helper', innerHelper);
-
-    return innerHelper;
-});
+define(["hbs/handlebars"],function(e){"use strict";function n(e){return"undefined"!=typeof e?"("+e+")":"(missing)"}return e.registerHelper("inner-helper",n),n});

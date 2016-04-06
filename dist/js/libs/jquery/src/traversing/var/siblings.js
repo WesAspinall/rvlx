@@ -1,15 +1,1 @@
-define( function() {
-
-return function( n, elem ) {
-	var matched = [];
-
-	for ( ; n; n = n.nextSibling ) {
-		if ( n.nodeType === 1 && n !== elem ) {
-			matched.push( n );
-		}
-	}
-
-	return matched;
-};
-
-} );
+define([],function(){return function(n,e){for(var r=[];n;n=n.nextSibling)1===n.nodeType&&n!==e&&r.push(n);return r}});

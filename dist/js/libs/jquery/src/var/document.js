@@ -1,3 +1,1 @@
-define( function() {
-	return window.document;
-} );
+define([],function(){return window.document});

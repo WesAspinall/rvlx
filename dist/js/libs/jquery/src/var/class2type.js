@@ -1,5 +1,1 @@
-define( function() {
-
-	// [[Class]] -> type pairs
-	return {};
-} );
+define([],function(){return{}});
