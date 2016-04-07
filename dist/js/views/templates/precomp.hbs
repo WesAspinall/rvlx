@@ -6,33 +6,39 @@
 		</ul>
 	</div>
 
-	{{#each sailings}}
+	{{#each this}}
+
 	<div class="listing">
+		<img class="sailing_main_img" src={{this.sailing_main_image}}/>
+		<div class="lowPrice">
+			<p>Starting at</p>
+			<p>${{this.starting_at_price}}</p>
+			<div class="triangle"></div>
+		</div>
+		<div class="listingContent">
+				<p class="cruiseLineInfo">{{this.cruise_line_name}} - {{this.cruise_ship_name}}</p>
 
-		<div class="cid">{{sailing_cruise_line_id}}</div>
-
-		<img class="sailing_main_img" src={{sailing_main_image}}/>
 			
-			<p>{{sailing_name}}</p>
+			<p class="sailingName">{{sailing_name}}</p>
 
 			<ul class="sailingDateUL">
-				{{#each sailing_options}}
+				{{#sailing_options}}
 					<li>
-						<input type="radio">
+						<input class="date" type="radio">
 					 		{{sailing_date}}
 						</input>
 					</li>
-				{{/each}}
+				{{/sailing_options}}
 			</ul>
 
 			<ul class="sailingPriceUL">
-				{{#each sailing_options}}
-					<li>${{sailing_price}}</li>
-				{{/each}}
+				{{#sailing_options}}
+					<li class="sailingPrice">${{this.sailing_price}}</li>
+				{{/sailing_options}}
 			</ul>
+		</div>
 	</div>{{!-- end listing --}}
 	{{/each}}
-
 
 
 	<div class="sailingsTotalContainer">

@@ -2,10 +2,10 @@ require.config({
 
 	paths: {
 
-		"jquery": "libs/jquery/dist/jquery",
+		"jquery": "libs/jquery/dist/jquery.min",
 		"underscore": "libs/underscore-amd/underscore",
 		"backbone": "libs/backbone-amd/backbone",
-		"handlebars": "libs/handlebars/handlebars.runtime.amd",
+		"handlebars": "libs/handlebars/handlebars.amd",
 		"hbs": "libs/require-handlebars-plugin/hbs"
 	},
 

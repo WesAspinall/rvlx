@@ -19,19 +19,44 @@ body{
 	display: table;
 	margin: 1em auto;
 	text-align: left;
+	position: relative;
 	p{
 		font-size: 1.4em;
 		font-weight: bold;
 		margin: 0;
-		padding: .5em;
+		padding: 0 0 .5em .5em;
+	
 	}
 	.cruiseLineInfo{
 		font-size: .7em;
 		color: $grey;
 		font-style: italic;
-		padding: .5em;
+		padding: .5em 0 0 .9em;
 	}
 }
+
+
+.lowPrice{
+	width: 125px;
+	height: 75px;
+	position: absolute;
+	top: 50px;
+	right: -10px;
+	background-color: $orange;
+	.triangle{
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 10px 10px 0 0;
+		border-color: #bb7001 transparent transparent transparent;
+		position: absolute;
+		top: 75px;
+		right:0; 
+	}
+}
+
+
+
 .sailingDateUL{
 	margin: 0;
 	padding: 0 .5em .5em;
@@ -41,32 +66,6 @@ body{
 	li{
 		list-style: none;
 		padding: .4em;
-	}
-	input[type='radio'] {
-	  -webkit-appearance:none;
-	  width:20px;
-	  height:20px;
-	  border:1px solid darkgray;
-	  border-radius:100%;
-	  background-color: $magnesium;
-	  outline:none;
-
-	}
-
-	input[type='radio']:hover {
-	  box-shadow:0 0 5px 0px $orange inset;
-	}
-
-	input[type='radio']:before {
-	  content:'';
-	  display:block;
-	  width:50%;
-	  height:50%;
-	  margin: 25% auto;    
-	  border-radius:50%;    
-	}
-	input[type='radio']:checked:before {
-	  background:$black;
 	}
 }
 
@@ -136,4 +135,128 @@ body{
 }
 
 
+/* iPads (portrait and landscape) ----------- */
+@media(min-width : 768px) and (max-width : 1152px) {
+	.listing{
+
+		display: table;
+		margin: 1em auto;
+		width: 90%;
+	p{
+		font-size: 1.4em;
+		font-weight: bold;
+		margin: 0;
+		padding: 0 0 .5em .5em;
+	
+	}
+	 p #sailingName {
+		font-size: 2em;
+	}
+
+	.cruiseLineInfo{
+		font-size: .7em;
+		color: $grey;
+		font-style: italic;
+		padding: .5em 0 0 .9em;
+	}
+}
+
+
+	.listing{
+		display: table;
+		margin: 1em auto;
+		width: 90%;
+
+		
+		img{
+			display: inline-block;
+			float: left;
+		}
+
+
+		.listingcontent{
+			width: 40%;
+			padding-top: 30px;
+			float: left;
+			text-align: left;
+
+			
+			
+		}
+	}	
+
+	.itemTemplateWrapper{
+		border: 1px solid $grey;
+		position: relative;
+		padding-bottom: 66px;
+		.titleContainer{
+			padding: 1em;
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				.title1{
+					display: inline-block;
+					font-size: 3vw;
+					font-weight: bold;
+				}
+				.title2{
+					display: inline-block;
+					font-size: 2vw;
+					font-style: italic;
+				}
+				
+			}
+		}
+	}
+}
+
+@media(min-width : 1153px){
+/* Styles */
+
+	
+	.listing{
+		display: inline-block;
+		margin: 1em 2.5em;
+
+
+		img{
+					}
+
+
+		.listingcontent{
+		
+
+			
+			
+		}
+	}	
+
+	.itemTemplateWrapper{
+		border: 1px solid $grey;
+		position: relative;
+		padding-bottom: 66px;
+		.titleContainer{
+			padding: 1em;
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				.title1{
+					display: inline-block;
+					font-size: 2vw;
+					font-weight: bold;
+				}
+				.title2{
+					display: inline-block;
+					font-size: 1vw;
+					font-style: italic;
+				}
+				
+			}
+		}
+	}
+
+
+}
 

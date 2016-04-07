@@ -6,17 +6,35 @@ body {
   background-color: #ffffff;
   display: table;
   margin: 1em auto;
-  text-align: left; }
+  text-align: left;
+  position: relative; }
   .listing p {
     font-size: 1.4em;
     font-weight: bold;
     margin: 0;
-    padding: .5em; }
+    padding: 0 0 .5em .5em; }
   .listing .cruiseLineInfo {
     font-size: .7em;
     color: #989898;
     font-style: italic;
-    padding: .5em; }
+    padding: .5em 0 0 .9em; }
+
+.lowPrice {
+  width: 125px;
+  height: 75px;
+  position: absolute;
+  top: 50px;
+  right: -10px;
+  background-color: #FF9901; }
+  .lowPrice .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 0;
+    border-color: #bb7001 transparent transparent transparent;
+    position: absolute;
+    top: 75px;
+    right: 0; }
 
 .sailingDateUL {
   margin: 0;
@@ -26,25 +44,6 @@ body {
   .sailingDateUL li {
     list-style: none;
     padding: .4em; }
-  .sailingDateUL input[type='radio'] {
-    -webkit-appearance: none;
-    width: 17px;
-    height: 17px;
-    border: 1px solid darkgray;
-    border-radius: 100%;
-    background-color: #D6D6D6;
-    outline: none; }
-  .sailingDateUL input[type='radio']:hover {
-    box-shadow: 0 0 5px 0px #FF9901 inset; }
-  .sailingDateUL input[type='radio']:before {
-    content: '';
-    display: block;
-    width: 50%;
-    height: 50%;
-    margin: 25% auto;
-    border-radius: 50%; }
-  .sailingDateUL input[type='radio']:checked:before {
-    background: #000000; }
 
 .sailingPriceUL {
   margin: 0;
@@ -97,3 +96,76 @@ body {
     height: 100px;
     float: right;
     background: #FF9901; }
+
+/* iPads (portrait and landscape) ----------- */
+@media (min-width: 768px) and (max-width: 1152px) {
+  .listing {
+    display: table;
+    margin: 1em auto;
+    width: 90%; }
+    .listing p {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin: 0;
+      padding: 0 0 .5em .5em; }
+    .listing p #sailingName {
+      font-size: 2em; }
+    .listing .cruiseLineInfo {
+      font-size: .7em;
+      color: #989898;
+      font-style: italic;
+      padding: .5em 0 0 .9em; }
+  .listing {
+    display: table;
+    margin: 1em auto;
+    width: 90%; }
+    .listing img {
+      display: inline-block;
+      float: left; }
+    .listing .listingcontent {
+      width: 40%;
+      padding-top: 30px;
+      float: left;
+      text-align: left; }
+  .itemTemplateWrapper {
+    border: 1px solid #989898;
+    position: relative;
+    padding-bottom: 66px; }
+    .itemTemplateWrapper .titleContainer {
+      padding: 1em; }
+      .itemTemplateWrapper .titleContainer ul {
+        margin: 0;
+        padding: 0;
+        list-style: none; }
+        .itemTemplateWrapper .titleContainer ul .title1 {
+          display: inline-block;
+          font-size: 3vw;
+          font-weight: bold; }
+        .itemTemplateWrapper .titleContainer ul .title2 {
+          display: inline-block;
+          font-size: 2vw;
+          font-style: italic; } }
+
+@media (min-width: 1153px) {
+  /* Styles */
+  .listing {
+    display: inline-block;
+    margin: 1em 2.5em; }
+  .itemTemplateWrapper {
+    border: 1px solid #989898;
+    position: relative;
+    padding-bottom: 66px; }
+    .itemTemplateWrapper .titleContainer {
+      padding: 1em; }
+      .itemTemplateWrapper .titleContainer ul {
+        margin: 0;
+        padding: 0;
+        list-style: none; }
+        .itemTemplateWrapper .titleContainer ul .title1 {
+          display: inline-block;
+          font-size: 2vw;
+          font-weight: bold; }
+        .itemTemplateWrapper .titleContainer ul .title2 {
+          display: inline-block;
+          font-size: 1vw;
+          font-style: italic; } }
