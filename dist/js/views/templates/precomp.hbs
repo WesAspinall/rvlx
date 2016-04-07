@@ -1,5 +1,43 @@
-{{#each cruise_lines}}
 <div class="itemTemplateWrapper">
-	<div>{{cruise_line_name}}</div>
+	<div class="titleContainer">
+		<ul>
+			<li class="title1">Choose Your Sailings:</li>
+			<li class="title2">(Pick one for each box)</li>
+		</ul>
+	</div>
+
+	{{#each sailings}}
+	<div class="listing">
+
+		<div class="cid">{{sailing_cruise_line_id}}</div>
+
+		<img class="sailing_main_img" src={{sailing_main_image}}/>
+			
+			<p>{{sailing_name}}</p>
+
+			<ul class="sailingDateUL">
+				{{#each sailing_options}}
+					<li>
+						<input type="radio">
+					 		{{sailing_date}}
+						</input>
+					</li>
+				{{/each}}
+			</ul>
+
+			<ul class="sailingPriceUL">
+				{{#each sailing_options}}
+					<li>${{sailing_price}}</li>
+				{{/each}}
+			</ul>
+	</div>{{!-- end listing --}}
+	{{/each}}
+
+
+
+	<div class="sailingsTotalContainer">
+		<div class="totalText">Your Selected Sailings Total</div>
+		<div class="total"></div>
+	</div>
+
 </div>
-{{/each}}

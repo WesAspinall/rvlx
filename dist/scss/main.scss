@@ -4,8 +4,130 @@
 $white				: #ffffff;
 $black				: #000000;
 $orange 			: #FF9901;
-$darkOrange   : #BB7001;
+$darkOrange         : #BB7001;
+$grey				: #989898;
+$magnesium			: #D6D6D6;
 
-h1{
-	color: blue;
+body{
+	background-color: $magnesium;
+	font-family: "Helvetica Neue", courier;
+
 }
+
+.listing{
+	background-color: $white;
+	display: table;
+	margin: 1em auto;
+	text-align: left;
+	p{
+		font-size: 1.4em;
+		font-weight: bold;
+		margin: 0;
+		padding: .5em;
+	}
+}
+.sailingDateUL{
+	margin: 0;
+	padding: 0 .5em .5em;
+	float: left;
+	text-align: left;
+
+	li{
+		list-style: none;
+		vertical-align: top;
+	}
+	input[type='radio'] {
+	  -webkit-appearance:none;
+	  width:20px;
+	  height:20px;
+	  border:1px solid darkgray;
+	  border-radius:50%;
+	  background-color: $magnesium;
+	  outline:none;
+
+	}
+
+	input[type='radio']:hover {
+	  box-shadow:0 0 5px 0px $orange inset;
+	}
+
+	input[type='radio']:before {
+	  content:'';
+	  display:block;
+	  width:60%;
+	  height:60%;
+	  margin: 20% auto;    
+	  border-radius:50%;    
+	}
+	input[type='radio']:checked:before {
+	  background:$black;
+	}
+}
+
+.sailingPriceUL{
+	margin: 0;
+	padding: 0 .5em;
+	float: right;
+	li{
+		list-style: none;
+		padding: .2em;
+		color: $orange;
+	}
+
+}
+
+.cid{
+	display: none;
+}
+
+.itemTemplateWrapper{
+	border: 1px solid $grey;
+	position: relative;
+	padding-bottom: 66px;
+	.titleContainer{
+		padding: 1em;
+		ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			.title1{
+				font-size: 6vw;
+				font-weight: bold;
+			}
+			.title2{
+				font-size: 4vw;
+				font-style: italic;
+			}
+			
+		}
+	}
+}
+
+.sailingsTotalContainer{
+	width: 100%;
+	height: 66px;
+	background: $white;
+    -webkit-box-shadow: 0px -1px 3px #B4B4B4;
+    -moz-box-shadow:    0px -1px 3px #B4B4B4;
+    box-shadow:         0px -1px 3px #B4B4B4;
+	position: fixed;
+	bottom: 0;
+		.totalText{
+			width: 40%;
+			float: left;
+			padding: .6em;
+			font-size: 1.1em;
+			font-weight: bold;
+			text-align: left;
+			word-wrap: break-word;
+		}
+		.total{
+			width: 50%;
+			height: 100px;
+			float: right;
+			background: $orange;
+		}
+}
+
+
+

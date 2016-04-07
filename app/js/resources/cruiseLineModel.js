@@ -6,7 +6,7 @@ define(['backbone'],function(Backbone){
 		
 
 		parse: function(data) {
-
+		
     			return data;
   			}
 	});

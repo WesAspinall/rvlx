@@ -1,30 +1,41 @@
 define([
   'backbone',
   'jquery',
+  'underscore',
   'handlebars',
   'resources/collection',
   'hbs!views/templates/precomp'
-], function(Backbone, $, Handlebars,Collection, Template){
+], function(Backbone, $, _, Handlebars, Collection, Template){
 
     var HomeView = Backbone.View.extend({
         
         initialize: function(){
 
           this.render();
+
+
         },
 
-        render: function() {
+
+        render: function(data) {
           
           var collection = new Collection();
 
           collection.fetch().then(function(){
+            //get json obj
             var data = collection.toJSON();
-            document.body.innerHTML=Template(data[0]);
-          });
-        
-      
+       
+             console.log(data);
+           
+            //pass template the data and print it on the page
+            document.body.innerHTML=Template(data);
 
-        }
+          });
+        },
+
+
+
+
     })
 
     return HomeView;
