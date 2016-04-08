@@ -28,6 +28,8 @@ define([
             //pass template the data and print it on the page
             document.body.innerHTML=Template(data);
 
+
+            //calculates total and puts it at the bottom
             function runTotal(){
               let input1 = parseInt($('.sum1').html() || 0);
               let input2 = parseInt($('.sum2').html() || 0);
@@ -35,6 +37,7 @@ define([
               $('#grandtotal').html(input1+input2+input3);
             }
 
+            //price getting
            $('.dateLi5').on('click',function(){
               var selectedPrice = $(this).siblings('li').text();
              $('.sum1').html(selectedPrice);
