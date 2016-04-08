@@ -16,4 +16,5 @@
 - [JavaScript Code Style](http://jscs.info/)
 - [Backbonejs](http://backbonejs.org/)
 - [Handlebars](http://handlebarsjs.com/)
+- [Require.js](http://requirejs.org/)
 - [SASS](http://sass-lang.com/)
