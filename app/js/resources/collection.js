@@ -2,6 +2,7 @@ define(['backbone', 'underscore','resources/cruiseLineModel'],function(Backbone,
 
 	var Collection = Backbone.Collection.extend({
 
+        url: 'https://api.myjson.com/bins/2gr36',
 
 		data: '../../payload.json',
 

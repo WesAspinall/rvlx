@@ -1,1 +1,1 @@
-define(["backbone"],function(n){var e=n.Model.extend({urlRoot:"../../payload.json",parse:function(n){return n}});return e});
+define(["backbone"],function(n){var e=n.Model.extend({url:"https://api.myjson.com/bins/2gr36",data:"../../payload.json",parse:function(n){return n}});return e});

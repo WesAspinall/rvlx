@@ -7194,8 +7194,8 @@ define('handlebars',['exports', 'module', './handlebars.runtime', './handlebars/
 define('resources/cruiseLineModel',['backbone'],function(Backbone){
 
 	var CruiseLineModel = Backbone.Model.extend({
-
-		urlRoot: '../../payload.json',
+		url: 'https://api.myjson.com/bins/2gr36',
+		data: '../../payload.json',
 		
 
 		parse: function(data) {
@@ -7210,8 +7210,9 @@ define('resources/collection',['backbone', 'underscore','resources/cruiseLineMod
 
 	var Collection = Backbone.Collection.extend({
 
+        url: 'https://api.myjson.com/bins/2gr36',
 
-		url: '../../payload.json',
+		data: '../../payload.json',
 
 		model: CruiseLineModel,
 
