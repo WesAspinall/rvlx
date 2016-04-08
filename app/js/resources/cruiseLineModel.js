@@ -2,7 +2,7 @@ define(['backbone'],function(Backbone){
 
 	var CruiseLineModel = Backbone.Model.extend({
 
-		urlRoot: '../../payload.json',
+		data: '../../payload.json',
 		
 
 		parse: function(data) {

@@ -3,7 +3,7 @@ define(['backbone', 'underscore','resources/cruiseLineModel'],function(Backbone,
 	var Collection = Backbone.Collection.extend({
 
 
-		url: '../../payload.json',
+		data: '../../payload.json',
 
 		model: CruiseLineModel,
 
