@@ -35,7 +35,7 @@ body{
 	}
 }
 
-
+//the orange low price box
 .lowPrice{
 	width: 125px;
 	height: 75px;
@@ -43,6 +43,13 @@ body{
 	top: 50px;
 	right: -10px;
 	background-color: $orange;
+	p{
+		font-size: 1.9em;
+	}
+	p.startingAt{
+		font-size:.7em;
+		font-weight: 150;
+	}
 	.triangle{
 		width: 0;
 		height: 0;
@@ -55,36 +62,35 @@ body{
 	}
 }
 
+//lower half of listing
+.listingContent{
+	.datePrice{
+		ul{
+			list-style: none;
+			margin: 0;
+			padding:0 0 .5em .5em;
+			li{
+				display: inline-block
+			}
+			.dateLi{
+				text-align: left;
+			}
+			.priceLi{
+				float: right;
+				padding-right: .5em;
+				color: $orange;
+			}
+			.priceLi::before{
+				content:"$";
+			}
+		}
 
-
-.sailingDateUL{
-	margin: 0;
-	padding: 0 .5em .5em;
-	float: left;
-	text-align: left;
-
-	li{
-		list-style: none;
-		padding: .4em;
 	}
-}
-
-.sailingPriceUL{
-	margin: 0;
-	padding: 0 .5em;
-	float: right;
-	li{
-		list-style: none;
-		padding: .4em;
-		color: $orange;
-	}
 
 }
 
-.cid{
-	display: none;
-}
 
+//wrapper
 .itemTemplateWrapper{
 	border: 1px solid $grey;
 	position: relative;
@@ -108,6 +114,8 @@ body{
 	}
 }
 
+
+//totals bar
 .sailingsTotalContainer{
 	width: 100%;
 	height: 66px;
@@ -131,59 +139,71 @@ body{
 			height: 100px;
 			float: right;
 			background: $orange;
+				.sum{
+					display: none;
+				}
+				h1{
+					width: 100%;
+					padding: .5em;
+					margin: auto;				
+				}
 		}
 }
 
 
 /* iPads (portrait and landscape) ----------- */
-@media(min-width : 768px) and (max-width : 1152px) {
-	.listing{
-
-		display: table;
-		margin: 1em auto;
-		width: 90%;
-	p{
-		font-size: 1.4em;
-		font-weight: bold;
-		margin: 0;
-		padding: 0 0 .5em .5em;
-	
-	}
-	 p #sailingName {
-		font-size: 2em;
-	}
-
-	.cruiseLineInfo{
-		font-size: .7em;
-		color: $grey;
-		font-style: italic;
-		padding: .5em 0 0 .9em;
-	}
-}
-
-
+@media(min-width : 755px) and (max-width : 1152px) {
 	.listing{
 		display: table;
 		margin: 1em auto;
 		width: 90%;
-
-		
 		img{
 			display: inline-block;
 			float: left;
 		}
-
-
-		.listingcontent{
+		.listingContent{
 			width: 40%;
 			padding-top: 30px;
 			float: left;
-			text-align: left;
+			text-align: left;			
+			p{
+				font-size: 1.4em;
+				font-weight: bold;
+				margin: 0;
+				padding: .2em 0 .5em .5em;
+			
+			}
+			 p.sailingName {
+				font-size: 1.9em;
+				padding-bottom: 1.2em;
+			}
+			.cruiseLineInfo{
+				font-size: .9em;
+				color: $grey;
+				font-style: italic;
+				padding: .5em 0 0 .9em;
+			}
+			.datePrice{
+				ul{
+				width: 100%;
+				margin: 0;
+					
+				
+				li{
+				text-align: right;
+				font-size: 1em;
 
-			
-			
+				}
+			  }
+			}
 		}
 	}	
+
+	.datePrice{
+		li{
+			padding: .6em;
+		}
+	}
 
 	.itemTemplateWrapper{
 		border: 1px solid $grey;
@@ -214,22 +234,9 @@ body{
 @media(min-width : 1153px){
 /* Styles */
 
-	
 	.listing{
 		display: inline-block;
 		margin: 1em 2.5em;
-
-
-		img{
-					}
-
-
-		.listingcontent{
-		
-
-			
-			
-		}
 	}	
 
 	.itemTemplateWrapper{

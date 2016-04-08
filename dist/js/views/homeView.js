@@ -1,1 +1,61 @@
-define(["jquery","underscore","backbone","handlebars","resources/collection","hbs!views/templates/precomp"],function(e,n,t,o,r,c){var i=t.View.extend({initialize:function(){this.render()},render:function(e){var n=new r;n.fetch().then(function(){function e(){console.log("blah")}var t=n.toJSON();console.log(t),document.body.innerHTML=c(t);var o=document.getElementsByClassName("date");o.addEventListener("click",e)})}});return i});
+define([
+  'jquery',
+  'underscore',
+  'backbone',
+  'handlebars',
+  'resources/collection',
+  'hbs!views/templates/precomp'
+], function($, _, Backbone,Handlebars, Collection, Template){
+
+    var HomeView = Backbone.View.extend({
+        
+        initialize: function(){
+
+          this.render();
+
+        },
+
+
+        render: function(data) {
+          var collection = new Collection();
+
+          collection.fetch().then(function(){
+            //get json obj
+            var data = collection.toJSON();
+       
+             console.log(data);
+           
+            //pass template the data and print it on the page
+            document.body.innerHTML=Template(data);
+
+            function runTotal(){
+              let input1 = parseInt($('.sum1').html() || 0);
+              let input2 = parseInt($('.sum2').html() || 0);
+              let input3 = parseInt($('.sum3').html() || 0);
+              $('#grandtotal').html(input1+input2+input3);
+            }
+
+           $('.dateLi5').on('click',function(){
+              var selectedPrice = $(this).siblings('li').text();
+             $('.sum1').html(selectedPrice);
+              runTotal();
+            }),
+            
+             $('.dateLi8').on('click',function(){
+              var selectedPrice = $(this).siblings('li').text();
+             $('.sum2').html(selectedPrice);
+              runTotal();
+            }),
+
+             $('.dateLi1').on('click',function(){
+              var selectedPrice = $(this).siblings('li').text();
+              $('.sum3').html(selectedPrice);
+               runTotal();
+            })
+
+           })
+        }
+  
+  })
+    return HomeView;
+});

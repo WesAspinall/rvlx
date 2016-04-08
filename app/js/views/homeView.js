@@ -28,29 +28,37 @@ define([
             //pass template the data and print it on the page
             document.body.innerHTML=Template(data);
 
-            $('input[name="date"]').click(function(){
-              var $radio = $(this);
 
-                // if this was previously checked
-                if ($radio.data('waschecked') == true)
-                {
-                    $radio.prop('checked', false);
-                    $radio.data('waschecked', false);
-                }
-                else
-                    $radio.data('waschecked', true);
+            //calculates total and puts it at the bottom
+            function runTotal(){
+              let input1 = parseInt($('.sum1').html() || 0);
+              let input2 = parseInt($('.sum2').html() || 0);
+              let input3 = parseInt($('.sum3').html() || 0);
+              $('#grandtotal').html(input1+input2+input3);
+            }
 
-                // remove was checked from other radios
-                $radio.siblings('input[name="date"]').data('waschecked', false);
-            });
+            //price getting
+           $('.dateLi5').on('click',function(){
+              var selectedPrice = $(this).siblings('li').text();
+             $('.sum1').html(selectedPrice);
+              runTotal();
+            }),
+            
+             $('.dateLi8').on('click',function(){
+              var selectedPrice = $(this).siblings('li').text();
+             $('.sum2').html(selectedPrice);
+              runTotal();
+            }),
 
-          });
-        }  
+             $('.dateLi1').on('click',function(){
+              var selectedPrice = $(this).siblings('li').text();
+              $('.sum3').html(selectedPrice);
+               runTotal();
+            })
 
-
-    
-
-    })
-
+           })
+        }
+  
+  })
     return HomeView;
 });

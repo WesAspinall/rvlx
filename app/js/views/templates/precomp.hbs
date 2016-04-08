@@ -8,42 +8,47 @@
 
 	{{#each this}}
 
-	<div class="listing">
+	<div class="listing" id="{{sailing_cruise_line_id}}">
+
 		<img class="sailing_main_img" src={{this.sailing_main_image}}/>
+
 		<div class="lowPrice">
-			<p>Starting at</p>
+			<p class="startingAt">Starting at:</p>
 			<p>${{this.starting_at_price}}</p>
 			<div class="triangle"></div>
 		</div>
-		<div class="listingContent">
-				<p class="cruiseLineInfo">{{this.cruise_line_name}} - {{this.cruise_ship_name}}</p>
 
-			
+
+		<div class="listingContent">
+			<p class="cruiseLineInfo">{{this.cruise_line_name}} - {{this.cruise_ship_name}}</p>
+
 			<p class="sailingName">{{sailing_name}}</p>
 
-			<ul class="sailingDateUL">
 				{{#sailing_options}}
-					<li>
-						<input class="date" type="radio" name ="date" checked="checked">
-					 		{{sailing_date}}
-						</input>
-					</li>
-				{{/sailing_options}}
-			</ul>
+				<div class="datePrice">
+					<ul>
 
-			<ul class="sailingPriceUL">
-				{{#sailing_options}}
-					<li class="sailingPrice">${{this.sailing_price}}</li>
+						<li class="date dateLi{{../sailing_cruise_line_id}}"><input class="dateInput" type="radio" name="datePrice{{../sailing_cruise_line_id}}"> {{sailing_date}}</li>
+
+						<li class="priceLi">{{this.sailing_price}}</li>
+					</ul>
+				</div>
 				{{/sailing_options}}
-			</ul>
-		</div>
+		</div>{{!-- end listingContent --}}
 	</div>{{!-- end listing --}}
 	{{/each}}
 
 
 	<div class="sailingsTotalContainer">
 		<div class="totalText">Your Selected Sailings Total</div>
-		<div class="total"></div>
+		<div class="total">
+			<span class="sum sum1"></span>
+			<span class="sum sum2"></span>
+			<span class="sum sum3"></span>
+			<h1>$<span id="grandtotal"></span></h1>
+			
+		</div>
+		</div>
 	</div>
 
 </div>

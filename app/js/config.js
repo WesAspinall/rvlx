@@ -19,8 +19,6 @@ require(['views/homeView','resources/cruiseLineModel', 'resources/collection'], 
 	var homeView     	= new HomeView();
 	var collection 	 	= new Collection();
 
-
-
 	console.log( "sup from config.js");
 
 })	

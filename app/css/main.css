@@ -26,6 +26,11 @@ body {
   top: 50px;
   right: -10px;
   background-color: #FF9901; }
+  .lowPrice p {
+    font-size: 1.9em; }
+  .lowPrice p.startingAt {
+    font-size: .7em;
+    font-weight: 150; }
   .lowPrice .triangle {
     width: 0;
     height: 0;
@@ -36,26 +41,20 @@ body {
     top: 75px;
     right: 0; }
 
-.sailingDateUL {
+.listingContent .datePrice ul {
+  list-style: none;
   margin: 0;
-  padding: 0 .5em .5em;
-  float: left;
-  text-align: left; }
-  .sailingDateUL li {
-    list-style: none;
-    padding: .4em; }
-
-.sailingPriceUL {
-  margin: 0;
-  padding: 0 .5em;
-  float: right; }
-  .sailingPriceUL li {
-    list-style: none;
-    padding: .4em;
+  padding: 0 0 .5em .5em; }
+  .listingContent .datePrice ul li {
+    display: inline-block; }
+  .listingContent .datePrice ul .dateLi {
+    text-align: left; }
+  .listingContent .datePrice ul .priceLi {
+    float: right;
+    padding-right: .5em;
     color: #FF9901; }
-
-.cid {
-  display: none; }
+  .listingContent .datePrice ul .priceLi::before {
+    content: "$"; }
 
 .itemTemplateWrapper {
   border: 1px solid #989898;
@@ -96,25 +95,15 @@ body {
     height: 100px;
     float: right;
     background: #FF9901; }
+    .sailingsTotalContainer .total .sum {
+      display: none; }
+    .sailingsTotalContainer .total h1 {
+      width: 100%;
+      padding: .5em;
+      margin: auto; }
 
 /* iPads (portrait and landscape) ----------- */
-@media (min-width: 768px) and (max-width: 1152px) {
-  .listing {
-    display: table;
-    margin: 1em auto;
-    width: 90%; }
-    .listing p {
-      font-size: 1.4em;
-      font-weight: bold;
-      margin: 0;
-      padding: 0 0 .5em .5em; }
-    .listing p #sailingName {
-      font-size: 2em; }
-    .listing .cruiseLineInfo {
-      font-size: .7em;
-      color: #989898;
-      font-style: italic;
-      padding: .5em 0 0 .9em; }
+@media (min-width: 755px) and (max-width: 1152px) {
   .listing {
     display: table;
     margin: 1em auto;
@@ -122,11 +111,32 @@ body {
     .listing img {
       display: inline-block;
       float: left; }
-    .listing .listingcontent {
+    .listing .listingContent {
       width: 40%;
       padding-top: 30px;
       float: left;
       text-align: left; }
+      .listing .listingContent p {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 0;
+        padding: .2em 0 .5em .5em; }
+      .listing .listingContent p.sailingName {
+        font-size: 1.9em;
+        padding-bottom: 1.2em; }
+      .listing .listingContent .cruiseLineInfo {
+        font-size: .9em;
+        color: #989898;
+        font-style: italic;
+        padding: .5em 0 0 .9em; }
+      .listing .listingContent .datePrice ul {
+        width: 100%;
+        margin: 0; }
+        .listing .listingContent .datePrice ul li {
+          text-align: right;
+          font-size: 1em; }
+  .datePrice li {
+    padding: .6em; }
   .itemTemplateWrapper {
     border: 1px solid #989898;
     position: relative;
