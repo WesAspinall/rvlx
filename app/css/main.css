@@ -22,7 +22,6 @@ body {
 .lowPrice {
   width: 125px;
   height: 75px;
-  border-radius: 3px;
   position: absolute;
   top: 50px;
   right: -10px;
@@ -56,7 +55,8 @@ body {
   .listingContent .datePrice ul .priceLi {
     float: right;
     padding-right: .5em;
-    color: #FF9901; }
+    color: #FF9901;
+    font-weight: bold; }
   .listingContent .datePrice ul .priceLi::before {
     content: "$"; }
 

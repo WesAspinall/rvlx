@@ -37,31 +37,30 @@ define(['backbone', 'underscore','resources/cruiseLineModel'],function(Backbone,
            //parsing out arrays for sorting and reassembly into
            // an array for use on line 98
             var blueberries = _.first(lowPrice);
-            var cherries = [];
+            var array1 = [];
 
             var pizza = lowPrice[1];
-            var beer = [];
+            var array2 = [];
 
             var tacos = _.last(lowPrice);
-            var salsa = []
+            var array3 = []
 
             for(i=0; i<blueberries.length; i++){
-                cherries.push(blueberries[i].sailing_price)
+                array1.push(blueberries[i].sailing_price)
             }
 
              for(i=0; i<lowPrice.length; i++){
-                beer.push(pizza[i].sailing_price)
+                array2.push(pizza[i].sailing_price)
             }
-            console.log(beer);
 
             for(i=0; i<tacos.length; i++){
-                salsa.push(tacos[i].sailing_price)
+                array3.push(tacos[i].sailing_price)
             }
 
             //new starting at price obj
-            var deal = [{starting_at_price: _.min(cherries)},
-            {starting_at_price: _.min(beer)},
-            {starting_at_price: _.min(salsa)}]
+            var deal = [{starting_at_price: _.min(array1)},
+            {starting_at_price: _.min(array2)},
+            {starting_at_price: _.min(array3)}]
 
 
 

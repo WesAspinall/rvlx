@@ -39,7 +39,6 @@ body{
 .lowPrice{
 	width: 125px;
 	height: 75px;
-	border-radius: 3px;
 	position: absolute;
 	top: 50px;
 	right: -10px;
@@ -83,6 +82,7 @@ body{
 				float: right;
 				padding-right: .5em;
 				color: $orange;
+				font-weight: bold;
 			}
 			.priceLi::before{
 				content:"$";
