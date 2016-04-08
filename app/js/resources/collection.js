@@ -17,10 +17,57 @@ define(['backbone', 'underscore','resources/cruiseLineModel'],function(Backbone,
 			//parse out data
 			var cruiseLines = data.cruise_lines;
 			var sailings = data.sailings;
-			//new array
-			var arr = [];
-            var answer = [{starting_at_price: 198},{starting_at_price: 300 }, {starting_at_price: 250}];
-			
+
+
+            //new array
+            var arr = [];
+            var lowPrice = [];
+            
+
+            // var lowPrice = [{starting_at_price: 198},{starting_at_price: 300 }, {starting_at_price: 250}];
+            
+
+
+            //drill into collection json obj to isolate 
+            //an array sailing options objects
+            _.each(sailings,function(sailings){
+                lowPrice.push(sailings.sailing_options)
+            })
+
+           //parsing out arrays for sorting and reassembly into
+           // an array for use on line 98
+            var blueberries = _.first(lowPrice);
+            var cherries = [];
+
+            var pizza = lowPrice[1];
+            var beer = [];
+
+            var tacos = _.last(lowPrice);
+            var salsa = []
+
+            for(i=0; i<blueberries.length; i++){
+                cherries.push(blueberries[i].sailing_price)
+            }
+
+             for(i=0; i<lowPrice.length; i++){
+                beer.push(pizza[i].sailing_price)
+            }
+            console.log(beer);
+
+            for(i=0; i<tacos.length; i++){
+                salsa.push(tacos[i].sailing_price)
+            }
+
+            //new starting at price obj
+            var deal = [{starting_at_price: _.min(cherries)},
+            {starting_at_price: _.min(beer)},
+            {starting_at_price: _.min(salsa)}]
+
+
+
+
+
+
     		//put all old objects in one array
     		var extendo = _.union(cruiseLines,sailings);
 
@@ -47,9 +94,9 @@ define(['backbone', 'underscore','resources/cruiseLineModel'],function(Backbone,
 
         
 
-    		//finally, fill in sailing data to those 3 objects
+    		//finally, fill in sailing data and start price data to those 3 objects
     		for(let i = 0; i<arr.length; i++){
-	    		_.defaults(arr[i],sailings[i], answer[i]);
+	    		_.defaults(arr[i],sailings[i], deal[i]);
     		}    
 
     		return arr;

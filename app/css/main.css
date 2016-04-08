@@ -22,12 +22,16 @@ body {
 .lowPrice {
   width: 125px;
   height: 75px;
+  border-radius: 3px;
   position: absolute;
   top: 50px;
   right: -10px;
   background-color: #FF9901; }
   .lowPrice p {
-    font-size: 1.9em; }
+    font-size: 1.9em;
+    -webkit-text-stroke-width: .1px;
+    -webkit-text-stroke-color: white;
+    text-shadow: 1px 1px 1px #ffffff; }
   .lowPrice p.startingAt {
     font-size: .7em;
     font-weight: 150; }
@@ -154,7 +158,9 @@ body {
         .itemTemplateWrapper .titleContainer ul .title2 {
           display: inline-block;
           font-size: 2vw;
-          font-style: italic; } }
+          font-style: italic; }
+  .totalText {
+    font-size: 2em; } }
 
 @media (min-width: 1153px) {
   /* Styles */
@@ -178,4 +184,6 @@ body {
         .itemTemplateWrapper .titleContainer ul .title2 {
           display: inline-block;
           font-size: 1vw;
-          font-style: italic; } }
+          font-style: italic; }
+  .totalText {
+    font-size: 2em; } }
