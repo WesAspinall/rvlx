@@ -31,9 +31,10 @@ define([
 
             //calculates total and puts it at the bottom
             function runTotal(){
-              let input1 = parseInt($('.sum1').html() || 0);
-              let input2 = parseInt($('.sum2').html() || 0);
-              let input3 = parseInt($('.sum3').html() || 0);
+              "use strict";
+              var input1 = parseInt($('.sum1').html() || 0);
+              var input2 = parseInt($('.sum2').html() || 0);
+              var input3 = parseInt($('.sum3').html() || 0);
               $('#grandtotal').html(input1+input2+input3);
             }
 

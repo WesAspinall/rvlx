@@ -45,6 +45,9 @@ body{
 	background-color: $orange;
 	p{
 		font-size: 1.9em;
+		-webkit-text-stroke-width: .1px;
+   		-webkit-text-stroke-color: white;
+   		text-shadow: 1px 1px 1px $white;
 	}
 	p.startingAt{
 		font-size:.7em;
@@ -79,6 +82,7 @@ body{
 				float: right;
 				padding-right: .5em;
 				color: $orange;
+				font-weight: bold;
 			}
 			.priceLi::before{
 				content:"$";
@@ -228,8 +232,14 @@ body{
 				
 			}
 		}
+	
+	}
+.totalText{
+		font-size: 2em;
 	}
 }
+
+
 
 @media(min-width : 1153px){
 /* Styles */
@@ -264,6 +274,9 @@ body{
 		}
 	}
 
+	.totalText{
+		font-size: 2em;
+	}
 
 }
 

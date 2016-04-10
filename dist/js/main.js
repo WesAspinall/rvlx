@@ -7225,10 +7225,53 @@ define('resources/collection',['backbone', 'underscore','resources/cruiseLineMod
 			//parse out data
 			var cruiseLines = data.cruise_lines;
 			var sailings = data.sailings;
-			//new array
-			var arr = [];
-            var answer = [{starting_at_price: 198},{starting_at_price: 300 }, {starting_at_price: 250}];
-			
+
+
+            //new array
+            var arr = [];
+            var lowPrice = [];
+                        
+
+            //drill into collection json obj to isolate 
+            //an array sailing options objects
+            _.each(sailings,function(sailings){
+                lowPrice.push(sailings.sailing_options)
+            })
+
+           //parsing out arrays for sorting and reassembly into
+           // an array for use on line 98
+            var cruiseLine1 = _.first(lowPrice);
+            var array1 = [];
+
+            var cruiseLine2 = lowPrice[1];
+            var array2 = [];
+
+            var cruiseLine3  = _.last(lowPrice);
+            var array3 = []
+
+            for(i=0; i<cruiseLine1.length; i++){
+                array1.push(cruiseLine1[i].sailing_price)
+            }
+
+             for(i=0; i<lowPrice.length; i++){
+                array2.push(cruiseLine2[i].sailing_price)
+            }
+
+            for(i=0; i<cruiseLine3.length; i++){
+                array3.push(cruiseLine3[i].sailing_price)
+            }
+
+    
+            //new starting at price obj
+            var deal = [{starting_at_price: _.min(array1)},
+            {starting_at_price: _.min(array2)},
+            {starting_at_price: _.min(array3)}]
+
+
+
+
+
+
     		//put all old objects in one array
     		var extendo = _.union(cruiseLines,sailings);
 
@@ -7255,9 +7298,9 @@ define('resources/collection',['backbone', 'underscore','resources/cruiseLineMod
 
         
 
-    		//finally, fill in sailing data to those 3 objects
-    		for(let i = 0; i<arr.length; i++){
-	    		_.defaults(arr[i],sailings[i], answer[i]);
+    		//finally, fill in sailing data and start price data to those 3 objects
+    		for(var i = 0; i<arr.length; i++){
+	    		_.defaults(arr[i],sailings[i], deal[i]);
     		}    
 
     		return arr;
@@ -13550,9 +13593,10 @@ define('views/homeView',[
 
             //calculates total and puts it at the bottom
             function runTotal(){
-              let input1 = parseInt($('.sum1').html() || 0);
-              let input2 = parseInt($('.sum2').html() || 0);
-              let input3 = parseInt($('.sum3').html() || 0);
+              "use strict";
+              var input1 = parseInt($('.sum1').html() || 0);
+              var input2 = parseInt($('.sum2').html() || 0);
+              var input3 = parseInt($('.sum3').html() || 0);
               $('#grandtotal').html(input1+input2+input3);
             }
 
