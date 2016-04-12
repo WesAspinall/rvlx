@@ -13593,17 +13593,33 @@ define('views/homeView',[
 
             //calculates total and puts it at the bottom
             function runTotal(){
-              "use strict";
-              var input1 = parseInt($('.sum1').html() || 0);
-              var input2 = parseInt($('.sum2').html() || 0);
-              var input3 = parseInt($('.sum3').html() || 0);
-              $('#grandtotal').html(input1+input2+input3);
+              var sum = 0;
+
+              $('.sum').each(function(){
+                sum += parseInt($(this).html() || 0);
+                 $('#grandtotal').html(sum);
+              })
+
+
+
+
+              // var input1 = parseInt($('.sum1').html() || 0);
+              // var input2 = parseInt($('.sum2').html() || 0);
+              // var input3 = parseInt($('.sum3').html() || 0);
+              // $('#grandtotal').html(input1+input2+input3);
             }
+
+            
+            $('.dateInput').on("click", function () { 
+              var a = 'checked';
+              var b = !$(this).attr('checked');
+              $(this).attr(a, b);
+            });
 
             //price getting
            $('.dateLi5').on('click',function(){
               var selectedPrice = $(this).siblings('li').text();
-             $('.sum1').html(selectedPrice);
+              $('.sum1').html(selectedPrice);
               runTotal();
             }),
             
