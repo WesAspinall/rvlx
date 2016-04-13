@@ -84,6 +84,9 @@ body{
 				color: $orange;
 				font-weight: bold;
 			}
+			.sum{
+					display: none;
+			}
 			.priceLi::before{
 				content:"$";
 			}
@@ -143,9 +146,6 @@ body{
 			height: 100px;
 			float: right;
 			background: $orange;
-				.sum{
-					display: none;
-				}
 				h1{
 					width: 100%;
 					padding: .5em;

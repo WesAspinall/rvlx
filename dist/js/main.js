@@ -13547,13 +13547,13 @@ var t = Handlebars.template({"1":function(depth0,helpers,partials,data,blockPara
     + this.escapeExpression(((helper = (helper = helpers.sailing_date || (depth0 != null ? depth0.sailing_date : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"sailing_date","hash":{},"data":data}) : helper)))
     + "</li>\n\n						<li class=\"priceLi\">"
     + this.escapeExpression(this.lambda((depth0 != null ? depth0.sailing_price : depth0), depth0))
-    + "</li>\n					</ul>\n				</div>\n";
+    + "</li>\n						<li class=\"sum sum1\"></li>\n					</ul>\n				</div>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,blockParams,depths) {
     var stack1;
 
   return "<div class=\"itemTemplateWrapper\">\n	<div class=\"titleContainer\">\n		<ul>\n			<li id=\"tit\" class=\"title1\">Choose Your Sailings:</li>\n			<li class=\"title2\">(Pick one for each box)</li>\n		</ul>\n	</div>\n\n"
     + ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":this.program(1, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n\n	<div class=\"sailingsTotalContainer\">\n		<div class=\"totalText\">Your Selected Sailings Total</div>\n		<div class=\"total\">\n			<span class=\"sum sum1\"></span>\n			<span class=\"sum sum2\"></span>\n			<span class=\"sum sum3\"></span>\n			<h1>$<span id=\"grandtotal\"></span></h1>\n			\n		</div>\n		</div>\n	</div>\n\n</div>";
+    + "\n\n	<div class=\"sailingsTotalContainer\">\n		<div class=\"totalText\">Your Selected Sailings Total</div>\n		<div class=\"total\">\n		\n		\n			<h1>$<span id=\"grandtotal\"></span></h1>\n			\n		</div>\n		</div>\n	</div>\n\n</div>";
 },"useData":true,"useDepths":true});
 Handlebars.registerPartial('views/templates/precomp', t);
 return t;
@@ -13581,6 +13581,8 @@ define('views/homeView',[
         render: function(data) {
           var collection = new Collection();
 
+          var arr = [];
+
           collection.fetch().then(function(){
             //get json obj
             var data = collection.toJSON();
@@ -13591,52 +13593,45 @@ define('views/homeView',[
             document.body.innerHTML=Template(data);
 
 
-            //calculates total and puts it at the bottom
-            function runTotal(){
+            //calculates grand total and puts it at the bottom
+            function grandTotal(){
               var sum = 0;
-
               $('.sum').each(function(){
                 sum += parseInt($(this).html() || 0);
                  $('#grandtotal').html(sum);
               })
-
-
-
-
-              // var input1 = parseInt($('.sum1').html() || 0);
-              // var input2 = parseInt($('.sum2').html() || 0);
-              // var input3 = parseInt($('.sum3').html() || 0);
-              // $('#grandtotal').html(input1+input2+input3);
             }
 
-            
-            $('.dateInput').on("click", function () { 
-              var a = 'checked';
-              var b = !$(this).attr('checked');
-              $(this).attr(a, b);
-            });
+             //updates sum of listings
+            function sumUpdate(){
+              $('.dateInput').each(function () { 
+                var checked = $(this).attr('checked');
+                if (!checked) {
+                  var selectedPrice = 0;
+                  $(this).parent().siblings('.sum').html(selectedPrice);
+                  grandTotal();
+                } else {
+                  var selectedPrice = $(this).parent().siblings('.priceLi').text();
+                  $(this).parent().siblings('.sum').html(selectedPrice);
+                  grandTotal();
+                }
+              })
+            } 
 
-            //price getting
-           $('.dateLi5').on('click',function(){
-              var selectedPrice = $(this).siblings('li').text();
-              $('.sum1').html(selectedPrice);
-              runTotal();
-            }),
-            
-             $('.dateLi8').on('click',function(){
-              var selectedPrice = $(this).siblings('li').text();
-             $('.sum2').html(selectedPrice);
-              runTotal();
-            }),
 
-             $('.dateLi1').on('click',function(){
-              var selectedPrice = $(this).siblings('li').text();
-              $('.sum3').html(selectedPrice);
-               runTotal();
+            //toggles radio buttons on and off
+            //removes sibling checked attribute
+            $('.dateInput').on('click', function(){
+              var checked = $(this).attr('checked');
+
+              $(this).attr('checked', !checked);
+              $(this).closest('.datePrice').siblings('.datePrice').find('.dateInput').removeAttr('checked');
+              sumUpdate();
+          
             })
 
-           })
-        }
+           }) //end of .then
+         } //end of render
   
   })
     return HomeView;

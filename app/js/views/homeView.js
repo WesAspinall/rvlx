@@ -19,6 +19,8 @@ define([
         render: function(data) {
           var collection = new Collection();
 
+          var arr = [];
+
           collection.fetch().then(function(){
             //get json obj
             var data = collection.toJSON();
@@ -29,8 +31,8 @@ define([
             document.body.innerHTML=Template(data);
 
 
-            //calculates total and puts it at the bottom
-            function runTotal(){
+            //calculates grand total and puts it at the bottom
+            function grandTotal(){
               var sum = 0;
               $('.sum').each(function(){
                 sum += parseInt($(this).html() || 0);
@@ -38,34 +40,36 @@ define([
               })
             }
 
-            
-            $('.dateInput').on("click", function () { 
-              var a = 'checked';
-              var b = !$(this).attr('checked');
-              $(this).attr(a, b);
-            });
+             //updates sum of listings
+            function sumUpdate(){
+              $('.dateInput').each(function () { 
+                var checked = $(this).attr('checked');
+                if (!checked) {
+                  var selectedPrice = 0;
+                  $(this).parent().siblings('.sum').html(selectedPrice);
+                  grandTotal();
+                } else {
+                  var selectedPrice = $(this).parent().siblings('.priceLi').text();
+                  $(this).parent().siblings('.sum').html(selectedPrice);
+                  grandTotal();
+                }
+              })
+            } 
 
-            //price getting
-           $('.dateLi5').on('click',function(){
-              var selectedPrice = $(this).siblings('li').text();
-              $('.sum1').html(selectedPrice);
-              runTotal();
-            }),
-            
-             $('.dateLi8').on('click',function(){
-              var selectedPrice = $(this).siblings('li').text();
-             $('.sum2').html(selectedPrice);
-              runTotal();
-            }),
 
-             $('.dateLi1').on('click',function(){
-              var selectedPrice = $(this).siblings('li').text();
-              $('.sum3').html(selectedPrice);
-               runTotal();
+            //toggles radio buttons on and off
+            //removes sibling checked attribute
+            $('.dateInput').on('click', function(){
+              var checked = $(this).attr('checked');
+
+              $(this).attr('checked', !checked);
+              $(this).closest('.datePrice').siblings('.datePrice').find('.dateInput').removeAttr('checked');
+              sumUpdate();
+          
             })
 
-           })
-        }
+           }) //end of .then
+         } //end of render
   
   })
     return HomeView;

@@ -57,6 +57,8 @@ body {
     padding-right: .5em;
     color: #FF9901;
     font-weight: bold; }
+  .listingContent .datePrice ul .sum {
+    display: none; }
   .listingContent .datePrice ul .priceLi::before {
     content: "$"; }
 
@@ -99,8 +101,6 @@ body {
     height: 100px;
     float: right;
     background: #FF9901; }
-    .sailingsTotalContainer .total .sum {
-      display: none; }
     .sailingsTotalContainer .total h1 {
       width: 100%;
       padding: .5em;
